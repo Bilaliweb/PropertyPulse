@@ -4,11 +4,15 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import markMessageAsRead from "@/app/actions/markMessageAsRead";
 import deleteMessage from "@/app/actions/deleteMessage";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 const MessageCard = ({ message }) => {
   const [formattedDate, setFormattedDate] = useState(null);
   const [isRead, setIsRead] = useState(message.read);
   const [isDeleted, setIsDeleted] = useState(false);
+  
+  // Globale state needs update for total unread messages count not all messages
+  const { setUnreadCount } = useGlobalContext()
 
   useEffect(() => {
     // This only runs on the client, avoiding the mismatch
@@ -18,9 +22,9 @@ const MessageCard = ({ message }) => {
   // Handler for Read button
   const handleReadClick = async () => {
     const read = await markMessageAsRead(message._id);
-    console.log("check read value: ", read);
 
     setIsRead(read);
+    setUnreadCount((prev) => read ? prev - 1 : prev + 1)
     toast.success(`Message marked as ${read ? "read" : "new"}.`);
   };
 
@@ -28,6 +32,7 @@ const MessageCard = ({ message }) => {
   const handleDeleteClick = async () => {
     await deleteMessage(message._id);
     setIsDeleted(true);
+    setUnreadCount((prev) => isRead ? prev : prev - 1)
     toast.success("Message deleted successfully");
   };
 
