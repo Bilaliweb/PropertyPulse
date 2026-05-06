@@ -2,10 +2,14 @@ import ProfilePropertiesListing from "@/components/ProfilePropertiesListing";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import User from "@/models/User";
+import { convertToSerializableObject } from "@/utils/convertToObject";
 import { getSessionUser } from "@/utils/getSessionUser";
 import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * Need to handle lean documents warning from terminal console.
+ */
 const Profile = async () => {
   await connectDB();
   const session = await getSessionUser();
@@ -18,7 +22,8 @@ const Profile = async () => {
 
   console.log("Get user for profile: ", session);
 
-  const userProperties = await Property.find({ owner: userId }).lean();
+  const propertiesDocsForConversion = await Property.find({ owner: userId }).lean();
+  const userProperties = propertiesDocsForConversion.map(convertToSerializableObject)
   console.log("User properties: ", userProperties);
 
   return (

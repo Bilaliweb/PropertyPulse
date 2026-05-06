@@ -1,25 +1,30 @@
 import mongoose from "mongoose";
 
-let connected = false
+let connected = false;
 
 const connectDB = async () => {
-    mongoose.set('strictQuery', true)
+  mongoose.set("strictQuery", true);
+  mongoose.set("bufferCommands", false);
 
-    // Check if database is already connected
-    if (connected) {
-        console.log("MongoDB is already connected.")
-        return
-    }
+  // Reuse existing mongoose connection when available.
+  if (connected || mongoose.connection.readyState === 1) {
+    connected = true;
+    return;
+  }
 
-    try {
-        console.log("Connecting...")
-        await mongoose.connect(process.env.MONGODB_URI)
-        connected = true
-    } catch (error) {
-        console.log("Error: ", error);
-    }
+  if (!process.env.MONGODB_URI) {
+    throw new Error("Missing MONGODB_URI environment variable.");
+  }
 
-    console.log("Is connected: ", connected);
-}
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 10000,
+    });
+    connected = true;
+  } catch (error) {
+    connected = false;
+    throw new Error(`MongoDB connection failed: ${error.message}`);
+  }
+};
 
 export default connectDB;
