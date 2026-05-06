@@ -2,6 +2,8 @@ import "@/assets/styles/globals.css";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/Navbar";
 import SessionProviderComponent from "@/components/SessionProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "Property Pulse",
@@ -17,6 +19,7 @@ const MainLayout = ({ children }) => {
           <NavBar />
           <main>{children}</main>
           <Footer />
+          <ToastContainer />
         </body>
       </html>
     </SessionProviderComponent>
