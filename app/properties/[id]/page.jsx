@@ -31,7 +31,6 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 //      * useRouter provides us various methods we can utilise to perform on our page.
 //      */
 //     const router = useRouter();
-//     console.log("router: ", router);
 //     // Example usage:
 //     // return (
 //     //     <div>
@@ -46,7 +45,6 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 //      * In our case it would be id. i.e: params.id
 //      */
 //     const params = useParams();
-//     console.log("params: ", params);
 //     // Example usage:
 //     // return (
 //     //     <div>
@@ -59,7 +57,6 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 //      * by utilising built-in methods from this hook.
 //      */
 //     const searchParams = useSearchParams();
-//     console.log("searchParams: ", searchParams);
 //     // Example: For the URL: /properties?name=test
 //     // return (
 //     //     <div>
@@ -71,7 +68,6 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 //      * usePathname is used to get the pathname.
 //      */
 //     const pathname = usePathname();
-//     console.log("pathname: ", pathname);
 //     // Example: For the URL: /properties?name=test
 
 //     return (

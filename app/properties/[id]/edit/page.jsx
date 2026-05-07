@@ -8,7 +8,6 @@ const EditProperty = async ({ params }) => {
     const {id} = await params;
     const propertyEditDoc = await Property.findById(id).lean();
     const property = convertToSerializableObject(propertyEditDoc)
-    console.log("property: ", property);
     
     if(!property) {
         return (

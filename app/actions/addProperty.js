@@ -18,10 +18,8 @@ async function addProperty (formData) {
         throw new Error("Session without id not allowed.");
     }
 
-
     const amenities = formData.getAll('amenities')
     const images = formData.getAll('images').filter((item) => item.name !== '')
-    console.log('Images: ', images)
 
     const property = {
         owner: userId,
@@ -55,30 +53,23 @@ async function addProperty (formData) {
 
     for (const imageFile of images) {
         const imageBuffer = await imageFile.arrayBuffer()
-        console.log("Image buffer in loop: ", imageBuffer)
         
         const imageArray = Array.from(new Uint8Array(imageBuffer))
-        console.log("Image array in loop: ", imageArray)
         
         const imageData = Buffer.from(imageArray)
-        console.log("Image data in loop: ", imageData)
 
         // Base64 conversion
         const imageBase64 = imageData.toString('base64')
-        console.log("Converted image into 64: ", imageBase64)
 
         // Make request to cloudinary
         const result = await cloudinay.uploader.upload(`data:image/png;base64,${imageBase64}`, {
             folder: 'propertyPulse'
         })
-        console.log("Result: ", result)
 
         imagesUrls.push(result.secure_url)
     }
 
     property.images = imagesUrls
-
-    console.log("About to create object: ", property)
 
     // const newProperty = new Property(formData)
     // await newProperty.save()

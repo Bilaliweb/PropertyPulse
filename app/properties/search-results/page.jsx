@@ -8,7 +8,6 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const SearchResults = async ({ searchParams }) => {
   await connectDB();
-  console.log("Searched params: ", searchParams);
   const { location, propertyType } = searchParams;
 
   // We'll have location pattern so whatever is typed in input field it would be able to search and match in either of fields of properties so we don't have to put separate filters.
@@ -32,7 +31,6 @@ const SearchResults = async ({ searchParams }) => {
 
   const results = await Property.find(query).lean();
   const properties = convertToSerializableObject(results);
-  console.log("Searched properties: ", properties);
 
   return (
     <>

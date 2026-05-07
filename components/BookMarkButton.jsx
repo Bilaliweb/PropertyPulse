@@ -10,7 +10,6 @@ const BookMarkButton = ({ property }) => {
   const { data: session } = useSession();
   const userId = session?.user?.id;
   const [isBookMarked, setIsBookMarked] = useState(false);
-  console.log("Is book marked: ", isBookMarked);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +20,6 @@ const BookMarkButton = ({ property }) => {
     const getStatus = async () => {
       try {
         const status = await checkBookmarkStatus(property._id);
-        console.log("Status: ", status);
 
         if (status) {
           setIsBookMarked(status?.isBookmared);
@@ -35,14 +33,12 @@ const BookMarkButton = ({ property }) => {
   }, [property._id, userId, checkBookmarkStatus]);
 
   const handleClick = async () => {
-    console.log("Clicked by user id: ", userId);
     if (!userId) {
       toast.error("User not logged in");
     }
 
     try {
       const result = await bookmarkProperty(property?._id);
-      console.log("Response for bookmark: ", result);
 
       if (result) {
         setIsBookMarked(result?.isBookmared);

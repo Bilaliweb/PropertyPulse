@@ -9,7 +9,6 @@ async function checkBookmarkStatus (propertyId) {
     await connectDB()
     const sessionUser = await getSessionUser();
     const { userId } = sessionUser;
-    console.log("User id for bookmark: ", userId);
 
     if(!sessionUser || !userId) {
         throw new Error("Session without id not allowed.");
