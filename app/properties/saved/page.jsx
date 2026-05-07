@@ -5,7 +5,6 @@ import { getSessionUser } from "@/utils/getSessionUser";
 const SavedProperties = async () => {
     const sessionUser = await getSessionUser();
     const { userId } = sessionUser;
-    console.log("User id for bookmark: ", userId);
 
     if(!sessionUser || !userId) {
         throw new Error("Session without id not allowed.");
@@ -13,7 +12,6 @@ const SavedProperties = async () => {
 
     // Used populate so that we get the whole property object instead of just user id from user model
     const {bookMarks} = await User.findById(userId).populate('bookMarks')
-    console.log("Book marks : ", bookMarks)
 
     return (
         <section className="px-4 py-6">

@@ -42,10 +42,8 @@ const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   // State for providers
   const [providers, setProviders] = useState(null);
-  console.log("PRoviders; ", providers);
   const pathname = usePathname();
   const { data: session } = useSession();
-  console.log("Session data: ", session);
 
   const userProfile = session?.user?.image
 

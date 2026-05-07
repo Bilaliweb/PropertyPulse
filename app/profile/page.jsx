@@ -20,11 +20,8 @@ const Profile = async () => {
     throw new Error("User Id is required.");
   }
 
-  console.log("Get user for profile: ", session);
-
   const propertiesDocsForConversion = await Property.find({ owner: userId }).lean();
   const userProperties = propertiesDocsForConversion.map(convertToSerializableObject)
-  console.log("User properties: ", userProperties);
 
   return (
     <section className="bg-blue-50">

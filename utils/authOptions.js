@@ -22,7 +22,6 @@ export const authOptions = {
     callbacks: {
         // 1. This will be invoked on successful sign in
         async signIn({ profile }) {
-            console.log("Signing in....")
             /**
              * 1. Connect to database
              * 2. Check if user exists
@@ -30,9 +29,7 @@ export const authOptions = {
              * 4. Return true to allow sign in
              */
             await connectDB();
-            console.log("DB connected...")
             const userExists = await User.findOne({ email: profile.email })
-            console.log("User exists or not: ", userExists);
 
             if (!userExists) {
                 // Truncate the username if name is too long
@@ -43,7 +40,6 @@ export const authOptions = {
                     username,
                     image: profile.picture
                 })
-                console.log("New created user: ", newUser)
             }
 
             return true;
@@ -57,9 +53,7 @@ export const authOptions = {
              * 2. Assign user id from the session
              * 3. Return the session
              */
-            console.log("Check session for login: ", session)
             const user = await User.findOne({email: session.user.email})
-            console.log("User for session exists: ", user);
             session.user.id = user._id.toString()
             return session
         }

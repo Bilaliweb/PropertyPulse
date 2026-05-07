@@ -9,7 +9,6 @@ const bookmarkProperty = async (propertyId) => {
 
     const sessionUser = await getSessionUser();
     const { userId } = sessionUser;
-    console.log("User id for bookmark: ", userId);
 
     if(!sessionUser || !userId) {
         throw new Error("Session without id not allowed.");
@@ -17,8 +16,6 @@ const bookmarkProperty = async (propertyId) => {
 
     const user = await User.findById(userId)
     let isBookmared = user.bookMarks.includes(propertyId)
-    console.log("Is book marked: ", isBookmared);
-    console.log("Property id: ", propertyId);
 
     let message = ''
 

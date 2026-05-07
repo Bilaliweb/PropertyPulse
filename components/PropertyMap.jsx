@@ -32,7 +32,6 @@ const PropertyMap = ({ property }) => {
         const res = await fromAddress(
           `${property.location.street} ${property.location.city} ${property.location.state} ${property.location.zipcode}`,
         );
-        console.log("response for geocode: ", res);
 
         if (res.length === 0) {
           setGeoCodeError(true);
@@ -40,7 +39,6 @@ const PropertyMap = ({ property }) => {
         }
 
         const { lat, lng } = res.results[0].geometry.location;
-        console.log("Check coords: ", lat, lng);
         setLatitude(lat);
         setLongitude(lng);
         setViewPort({
@@ -49,7 +47,6 @@ const PropertyMap = ({ property }) => {
           longitude: longitude,
         });
       } catch (error) {
-        console.log("Error: ", error);
         setGeoCodeError(true);
       } finally {
         setLoading(false);

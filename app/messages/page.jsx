@@ -21,18 +21,13 @@ const Messages = async () => {
     .populate("property", "name")
     .lean();
 
-  console.log("Read messages: ", readMessages);
-
   const unreadMessages = await Message.find({ receipient: userId, read: false })
     .sort({ createdAt: -1 })
     .populate("sender", "username")
     .populate("property", "name")
     .lean();
 
-  console.log("Un-Read messages: ", unreadMessages);
-
   const messages = [...unreadMessages, ...readMessages].map((msgDoc) => {
-    console.log("Message doc: ", msgDoc);
     const message = convertToSerializableObject(msgDoc)
     message.sender = convertToSerializableObject(msgDoc?.sender)
     message.property = convertToSerializableObject(msgDoc?.property)
