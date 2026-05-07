@@ -9,7 +9,7 @@ const PropertyDetails = ({ property }) => {
         <h1 className="text-3xl font-bold mb-4">{property.name}</h1>
         <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
           <FaMapMarker className="text-orange-700 mt-1 mr-1"/>
-          <p className="text-orange-700">{`${property.location.street} ${property.location.city}, ${property.location.state} ${property.location.zipcode}`}</p>
+          <p className="text-orange-700">{`${property.location.street} ${property.location.city}, ${property.location.state} ${property.location.zipCode}`}</p>
         </div>
 
         <h3 className="text-lg font-bold my-6 bg-gray-800 text-white p-2">

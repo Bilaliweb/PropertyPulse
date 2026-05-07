@@ -75,8 +75,8 @@ const AddPropertyForm = () => {
         />
         <input
           type="text"
-          id="zipcode"
-          name="location.zipcode"
+          id="zipCode"
+          name="location.zipCode"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Zipcode"
         />
@@ -373,14 +373,7 @@ const AddPropertyForm = () => {
         />
       </div>
 
-      <div>
-        <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Add Property
-        </button>
-      </div>
+      <AddPropertyButton />
     </form>
   );
 };

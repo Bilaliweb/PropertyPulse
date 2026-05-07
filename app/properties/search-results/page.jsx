@@ -20,7 +20,7 @@ const SearchResults = async ({ searchParams }) => {
       { "location.street": locationPattern },
       { "location.city": locationPattern },
       { "location.state": locationPattern },
-      { "location.zipcode": locationPattern },
+      { "location.zipCode": locationPattern },
     ],
   };
 
