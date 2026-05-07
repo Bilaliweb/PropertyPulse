@@ -1,4 +1,5 @@
 import addProperty from "@/app/actions/addProperty";
+import AddPropertyButton from "./AddPropertyButton";
 
 const AddPropertyForm = () => {
   return (
