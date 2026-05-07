@@ -1,5 +1,6 @@
 'use client';
 import updateProperty from "@/app/actions/updateProperty";
+import EditPropertyButton from "./EditPropertyButton";
 
 const PropertyEditForm = ({ property }) => {
 
