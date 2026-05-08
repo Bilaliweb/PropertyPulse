@@ -21,7 +21,7 @@ const ProfilePropertiesListing = ({ userProperties }) => {
   }
   return (
     <>
-      {properties?.map((property, index) => (
+      {properties.length === 0 ? (<span>No Property listings available.</span>) : properties?.map((property, index) => (
         <div key={index} className="mb-10">
           <Link href={`/properties/${property._id}`}>
             <Image
